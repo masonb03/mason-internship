@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
 import 'keen-slider/keen-slider.min.css';
+import Countdown from "../countdown/Countdown";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -35,30 +36,6 @@ const NewItems = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (items.length === 0) return;
-
-    const interval = setInterval(() => {
-      const updated = {};
-      items.forEach((item) => {
-        const time = item.expiryDate - Date.now();
-
-        if (time <= 0) {
-          updated[item.id] = "Expired";
-          return;
-        }
-
-        const hours = Math.floor(time / 1000 / 60 / 60);
-        const minutes = Math.floor(time / 1000 / 60) % 60;
-        const seconds = Math.floor(time / 1000) % 60;
-
-        updated[item.id] = `${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
-      });
-      setCountdowns(updated);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [items]);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -118,7 +95,7 @@ const NewItems = () => {
                       </div>
                       {item.expiryDate && (
                         <div className="de_countdown">
-                          {countdowns[item.id] || "Loading..."}
+                          <Countdown expiryDate={item.expiryDate} />
                         </div>
                       )}
                       <div className="nft__item_wrap">
