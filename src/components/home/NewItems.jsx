@@ -11,7 +11,6 @@ AOS.init();
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [countdowns, setCountdowns] = useState({});
 
   const [slideRef, instanceRef] = useKeenSlider({
     loop: true,
