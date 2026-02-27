@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const TopSellers = () => {
   const [data, setData] = useState([]);
@@ -47,7 +50,7 @@ const TopSellers = () => {
               ) : (
                 data.map((item, index) => (
                   <li key={index}>
-                  <div className="author_list_pp">
+                  <div className="author_list_pp" data-aos="fade-up" data-aos-delay="100" data-aos-easing="ease-in-out">
                     <Link to={`/author/${item.authorId}`}>
                       <img
                         className="lazy pp-author"
@@ -57,7 +60,7 @@ const TopSellers = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
-                  <div className="author_list_info">
+                  <div className="author_list_info" data-aos="fade-up" data-aos-delay="300" data-aos-easing="ease-in-out">
                     <Link to={`/author/${item.authorId}`}>{item.authorName}</Link>
                     <span>{item.price} ETH</span>
                   </div>

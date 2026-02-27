@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const HotCollections = () => {
 
@@ -40,7 +43,7 @@ const HotCollections = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-left" data-aos-delay="100" data-aos-easing="ease-in-out" data-aos-offset="200">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -50,7 +53,7 @@ const HotCollections = () => {
             <div className="d-flex gap-2">
               {new Array(4).fill(0).map((_, index) => (
                 <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                  <div className="nft_coll">
+                  <div className="nft_coll ">
                     <div className="nft_wrap placeholder-glow">
                       <span className="placeholder w-100" style={{ height: "200px", display: "block" }} />
                     </div>
@@ -76,9 +79,9 @@ const HotCollections = () => {
                 onMouseLeave={e => e.currentTarget.style.transform = "translateY(-50%) scale(1)"}
               >◀</button>
 
-              <div ref={slideRef} className="keen-slider">
+              <div ref={slideRef} className="keen-slider" data-aos="fade-left" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-offset="200" >
                 {collection.map((item, index) => (
-                  <div className="keen-slider__slide col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                  <div className="keen-slider__slide col-lg-3 col-md-6 col-sm-6 col-xs-12"  key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to={`/item-details/${item.nftId}`}>
