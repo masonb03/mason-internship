@@ -4,6 +4,9 @@ import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
 import 'keen-slider/keen-slider.min.css';
 import Countdown from "../countdown/Countdown";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -42,7 +45,7 @@ const NewItems = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-right" data-aos-delay="100" data-aos-easing="ease-in-out" data-aos-offset="200">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -83,7 +86,7 @@ const NewItems = () => {
               >◀</button>
 
               {/* Slider */}
-              <div ref={slideRef} className="keen-slider">
+              <div ref={slideRef} className="keen-slider" data-aos="fade-right" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-offset="200">
                 {items.map((item) => (
                   <div className="keen-slider__slide col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
                     <div className="nft__item">
